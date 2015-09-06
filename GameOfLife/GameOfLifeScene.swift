@@ -96,22 +96,23 @@ class GameOfLifeScene: SKScene {
     
     func subscribeToNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleDrawStartingBoard:", name: "DrawStartingBoardNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handlePopulateTileAt:", name: "PopulateTileAtNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleClearTileAt:", name:
+            "ClearTileAtNotification", object: nil)
     }
     
-    
-    
-    func handleDrawStartingBoard(notif: NSNotification) { drawBoard() }
-    
-    func handleSetNumberForTileAt(notification: NSNotification) {
+    func runFuncWithCoordsFromNotification(f: (Int, Int) -> (), notification: NSNotification) {
         if let rowVal: AnyObject! = notification.userInfo?["Row"] {
             if let colVal: AnyObject! = notification.userInfo?["Col"] {
-                if let numVal: AnyObject! = notification.userInfo?["Num"] {
-                    
-                    
-                }
+                let (row, col) = (rowVal as! Int, colVal as! Int)
+                f(row, col)
             }
         }
     }
+    
+    func handleDrawStartingBoard(notif: NSNotification) { drawBoard() }
+    func handlePopulateTileAt(notif: NSNotification) { runFuncWithCoordsFromNotification(populateTileAt, notification: notif) }
+    func handleClearTileAt(notif: NSNotification) { runFuncWithCoordsFromNotification(clearTileAt, notification: notif) }
     
     func drawBoard() {
         faceNode.text = "Number of live cells : 6"
@@ -136,15 +137,11 @@ class GameOfLifeScene: SKScene {
         tileNodeAt(4, col:4).addChild(tileLabelNode("😀"))
     }
     
-    func flagTileAt(row: Int, col: Int) {
-        //   tileNodeAt(row, col: col).addChild(tileLabelNode("❌"))
+    func populateTileAt(row: Int, col: Int) {
+        tileNodeAt(row, col: col).addChild(tileLabelNode("😀"))
     }
     
-    func unflagTileAt(row: Int, col: Int) {
-        clearTile(row, col: col)
-    }
-    
-    func clearTile(row: Int, col: Int) {
+    func clearTileAt(row: Int, col: Int) {
         for childNode : AnyObject in tileNodeAt(row, col: col).children {
             childNode.removeFromParent()
         }

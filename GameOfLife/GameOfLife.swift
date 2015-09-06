@@ -22,28 +22,29 @@ func randomIntUpTo(n: Int) -> Int {
 }
 
 class GameOfLifeMain {
-    
+    var timer = NSTimer()
+
     var tiles = Array(count: numberOfRows * numberOfCols, repeatedValue: Tile.Free)
-    
+    var i = 0
+
     init() {}
     
     func startGame() {
         setupTiles()
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "updateDiagonal", userInfo: nil, repeats: true)
     }
-    /*
-    func setupTiles() {
-    for i in 0..<numberOfBombs {
-    let row = randomIntUpTo(numberOfRows)
-    let col = randomIntUpTo(numberOfCols)
-    if !tileHasBomb(row, col: col) {
-    setTileAt(Tile.Populated, row: row, col: col)
-    }
-    }
-    notifyView("DrawStartingBoardNotification")
-    }*/
     
     func setupTiles() {
         notifyView("DrawStartingBoardNotification")
+    }
+    
+    
+    @objc func updateDiagonal() {
+        notifyView("PopulateTileAtNotification", info: ["Row": i, "Col": i, "Num": 0]);
+        i = (i + 1) % numberOfRows
+        var cellToDelete = (i - 3 + numberOfRows) % numberOfRows
+        notifyView("ClearTileAtNotification", info: ["Row": cellToDelete, "Col": cellToDelete, "Num": 0]);
     }
     
     func setTileAt(tile: Tile, row: Int, col: Int) {
