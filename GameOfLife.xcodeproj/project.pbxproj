@@ -15,6 +15,8 @@
 		CED680581B9CA843008CE309 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED680571B9CA843008CE309 /* Images.xcassets */; };
 		CED6805B1B9CA843008CE309 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED680591B9CA843008CE309 /* LaunchScreen.xib */; };
 		CED680671B9CA843008CE309 /* GameOfLifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED680661B9CA843008CE309 /* GameOfLifeTests.swift */; };
+		CED680711B9CA85D008CE309 /* GameOfLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED680701B9CA85D008CE309 /* GameOfLife.swift */; };
+		CED680731B9CA89F008CE309 /* GameOfLifeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED680721B9CA89F008CE309 /* GameOfLifeScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		CED680601B9CA843008CE309 /* GameOfLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GameOfLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED680651B9CA843008CE309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED680661B9CA843008CE309 /* GameOfLifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOfLifeTests.swift; sourceTree = "<group>"; };
+		CED680701B9CA85D008CE309 /* GameOfLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOfLife.swift; sourceTree = "<group>"; };
+		CED680721B9CA89F008CE309 /* GameOfLifeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOfLifeScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 				CED680571B9CA843008CE309 /* Images.xcassets */,
 				CED680591B9CA843008CE309 /* LaunchScreen.xib */,
 				CED6804A1B9CA843008CE309 /* Supporting Files */,
+				CED680701B9CA85D008CE309 /* GameOfLife.swift */,
+				CED680721B9CA89F008CE309 /* GameOfLifeScene.swift */,
 			);
 			path = GameOfLife;
 			sourceTree = "<group>";
@@ -221,6 +227,8 @@
 			files = (
 				CED680511B9CA843008CE309 /* GameScene.swift in Sources */,
 				CED680531B9CA843008CE309 /* GameViewController.swift in Sources */,
+				CED680731B9CA89F008CE309 /* GameOfLifeScene.swift in Sources */,
+				CED680711B9CA85D008CE309 /* GameOfLife.swift in Sources */,
 				CED6804D1B9CA843008CE309 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

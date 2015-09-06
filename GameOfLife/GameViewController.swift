@@ -1,6 +1,6 @@
 //
 //  GameViewController.swift
-//  GameOfLife
+//  GameOfLife2
 //
 //  Created by user on 06/09/2015.
 //  Copyright (c) 2015 LucyandAnna. All rights reserved.
@@ -26,10 +26,10 @@ extension SKNode {
 }
 
 class GameViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
             // Configure the view.
             let skView = self.view as! SKView
@@ -39,17 +39,19 @@ class GameViewController: UIViewController {
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
             
+            let scene = GameOfLifeScene(size: view.frame.size)
+            
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
             
             skView.presentScene(scene)
         }
     }
-
+    
     override func shouldAutorotate() -> Bool {
         return true
     }
-
+    
     override func supportedInterfaceOrientations() -> Int {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
             return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
@@ -57,12 +59,12 @@ class GameViewController: UIViewController {
             return Int(UIInterfaceOrientationMask.All.rawValue)
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
