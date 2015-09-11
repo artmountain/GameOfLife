@@ -10,6 +10,7 @@ import Foundation
 
 let numberOfRows = 10
 let numberOfCols = 10
+var isRunning = false
 
 enum Tile {
     case Populated
@@ -39,12 +40,17 @@ class GameOfLifeMain {
         notifyView("DrawStartingBoardNotification")
     }
     
+    func setState(newIsRunning: Bool) {
+        isRunning = newIsRunning
+    }
     
     @objc func updateDiagonal() {
-        notifyView("PopulateTileAtNotification", info: ["Row": i, "Col": i, "Num": 0]);
-        i = (i + 1) % numberOfRows
-        var cellToDelete = (i - 3 + numberOfRows) % numberOfRows
-        notifyView("ClearTileAtNotification", info: ["Row": cellToDelete, "Col": cellToDelete, "Num": 0]);
+        if isRunning {
+            notifyView("PopulateTileAtNotification", info: ["Row": i, "Col": i, "Num": 0]);
+            i = (i + 1) % numberOfRows
+            var cellToDelete = (i - 3 + numberOfRows) % numberOfRows
+            notifyView("ClearTileAtNotification", info: ["Row": cellToDelete, "Col": cellToDelete, "Num": 0]);
+        }
     }
     
     func setTileAt(tile: Tile, row: Int, col: Int) {

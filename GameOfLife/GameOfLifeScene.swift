@@ -32,7 +32,10 @@ class GameOfLifeScene: SKScene {
     var tileNodes = [SKSpriteNode]()
     var faceNode: SKLabelNode
     var tileCountNode: SKLabelNode
-    var bombCountNode: SKLabelNode
+    var xGridSizeNode: SKLabelNode
+    //var button: GGButton
+    var runNode: SKLabelNode
+    var stopNode: SKLabelNode
     
     var tileSpacing: Int
     var tileSize: Int
@@ -58,11 +61,10 @@ class GameOfLifeScene: SKScene {
         boardNode.position = CGPoint(x: boardXPadding, y: boardYPadding)
         
         let labelYPosition = boardNode.position.y + boardNode.size.height + labelYPadding
-        bombCountNode = SKLabelNode(fontNamed: fontName)
-        bombCountNode.fontSize = bombCountFontSize
-        bombCountNode.fontColor = labelColor
-        bombCountNode.position = CGPoint(x: size.width - labelXPadding, y: labelYPosition)
-        bombCountNode.horizontalAlignmentMode = .Right
+        xGridSizeNode = SKLabelNode(fontNamed: fontName)
+        xGridSizeNode.fontSize = bombCountFontSize
+        xGridSizeNode.fontColor = labelColor
+        xGridSizeNode.horizontalAlignmentMode = .Right
         
         faceNode = SKLabelNode(fontNamed: fontName)
         faceNode.fontSize = faceFontSize
@@ -73,6 +75,24 @@ class GameOfLifeScene: SKScene {
         tileCountNode.fontColor = labelColor
         tileCountNode.position = CGPoint(x: labelYPadding, y: labelYPosition)
         tileCountNode.horizontalAlignmentMode = .Left
+        
+        runNode = SKLabelNode(fontNamed: fontName)
+        runNode.fontSize = tileCountFontSize
+        runNode.fontColor = labelColor
+        runNode.position = CGPoint(x: labelXPadding, y: labelYPosition+200)
+        runNode.horizontalAlignmentMode = .Left
+        runNode.text = "Run"
+        
+        stopNode = SKLabelNode(fontNamed: fontName)
+        stopNode.fontSize = tileCountFontSize
+        stopNode.fontColor = labelColor
+        stopNode.position = CGPoint(x: labelXPadding, y: labelYPosition+100)
+        stopNode.horizontalAlignmentMode = .Left
+        stopNode.text = "Stop"
+
+      //  let button = GGButton(defaultButtonImage: "button", activeButtonImage: "button_active", buttonAction: goToGameScene)
+      //  button.position = CGPointMake(self.frame.width / 2, self.frame.height / 2)
+     //   addChild(button)
         
         super.init(size: size)
         self.backgroundColor = backColor
@@ -85,8 +105,11 @@ class GameOfLifeScene: SKScene {
     override func didMoveToView(view: SKView) {
         self.addChild(boardNode)
         self.addChild(faceNode)
-        self.addChild(bombCountNode)
+        self.addChild(xGridSizeNode)
         self.addChild(tileCountNode)
+        self.addChild(runNode)
+        self.addChild(stopNode)
+      //  self.addChild(button)
         subscribeToNotifications()
         gameModel.startGame()
     }
@@ -113,6 +136,7 @@ class GameOfLifeScene: SKScene {
     
     func drawBoard() {
         faceNode.text = "Number of live cells : 6"
+        xGridSizeNode.text = "Willy"
         addTilesToBoard()
     }
     
@@ -169,4 +193,91 @@ class GameOfLifeScene: SKScene {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
+    
+    func goToGameScene() {
+        
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        for touch: AnyObject in touches {
+        //    var selectedTile:SKSpriteNode? = getTileAtPosition(xPos: Int(touch.locationInNode(self).x), yPos: Int(touch.locationInNode(self).y))
+        //    if let tile = selectedTile {
+                //tile.isAlive = !tile.isAlive
+        //    }
+            
+            // Check start and stop
+            if CGRectContainsPoint(runNode.frame, touch.locationInNode(self)) {
+                runButtonPressed()
+            }
+            if CGRectContainsPoint(stopNode.frame, touch.locationInNode(self)) {
+                stopButtonPressed()
+            }
+        }
+    }
+    
+    func runButtonPressed() {
+        gameModel.setState(true)
+    }
+    func stopButtonPressed() {
+        gameModel.setState(false)
+    }
+    
+    /*
+    
+    class GGButton: SKNode {
+        var defaultButton: SKSpriteNode
+        var activeButton: SKSpriteNode
+        var action: () -> Void
+        
+        init(defaultButtonImage: String, activeButtonImage: String, buttonAction: () -> Void) {
+            defaultButton = SKSpriteNode(imageNamed: defaultButtonImage)
+            activeButton = SKSpriteNode(imageNamed: activeButtonImage)
+            activeButton.hidden = true
+            action = buttonAction
+            
+            super.init()
+            
+            userInteractionEnabled = true
+            addChild(defaultButton)
+            addChild(activeButton)
+        }
+        
+        /**
+        Required so XCode doesn't throw warnings
+        */
+        required init(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+        override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+            activeButton.hidden = false
+            defaultButton.hidden = true
+        }
+  
+        override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+            var touch: UITouch = touches.allObjects[0] as UITouch
+            var location: CGPoint = touch.locationInNode(self)
+            
+            if defaultButton.containsPoint(location) {
+                activeButton.hidden = false
+                defaultButton.hidden = true
+            } else {
+                activeButton.hidden = true
+                defaultButton.hidden = false
+            }
+        }
+        
+        override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+            var touch: UITouch = touches.allObjects[0] as UITouch
+            var location: CGPoint = touch.locationInNode(self)
+            
+            if defaultButton.containsPoint(location) {
+                action()
+            }
+            
+            activeButton.hidden = true
+            defaultButton.hidden = false
+        }
+    }
+*/
 }
