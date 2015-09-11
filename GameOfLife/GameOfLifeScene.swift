@@ -16,13 +16,10 @@ let visibleTileColor = SKColor(red: 204/255.0, green: 77/255.0, blue: 97/255.0, 
 let tileNumberColor = SKColor(red: 245/255.0, green: 203/255.0, blue: 198/255.0, alpha: 1.0)
 let labelColor = SKColor(red: 231/255.0, green: 220/255.0, blue: 227/255.0, alpha: 1.0)
 
-let touchHoldTimeThreshold = 0.3
-
 let fontName = "AvenirNext-Bold"
-let tileNumberFontSize: CGFloat = 20.0
 let tileLabelFontSize: CGFloat = 36.0
-let bombCountFontSize: CGFloat = 24.0
 let tileCountFontSize: CGFloat = 24.0
+let bombCountFontSize: CGFloat = 24.0
 let faceFontSize: CGFloat = 20.0
 let labelXPadding: CGFloat = 10.0
 let labelYPadding: CGFloat = 14.0
@@ -33,9 +30,9 @@ class GameOfLifeScene: SKScene {
     
     var boardNode: SKSpriteNode
     var tileNodes = [SKSpriteNode]()
-    var bombCountNode: SKLabelNode
     var faceNode: SKLabelNode
     var tileCountNode: SKLabelNode
+    var bombCountNode: SKLabelNode
     
     var tileSpacing: Int
     var tileSize: Int
@@ -167,5 +164,9 @@ class GameOfLifeScene: SKScene {
         labelNode.text = "\(text)"
         labelNode.verticalAlignmentMode = .Center
         return labelNode
+    }
+    
+    override func update(currentTime: CFTimeInterval) {
+        /* Called before each frame is rendered */
     }
 }
