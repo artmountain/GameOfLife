@@ -22,6 +22,7 @@ func randomIntUpTo(n: Int) -> Int {
 }
 
 class GameOfLifeMain {
+    var cellArray = [[CellData]]()
     var timer = NSTimer()
 
     var tiles = Array(count: numberOfRows * numberOfCols, repeatedValue: Tile.Free)
@@ -52,6 +53,10 @@ class GameOfLifeMain {
             var cellToDelete = (i - 3 + numberOfRows) % numberOfRows
             notifyView("ClearTileAtNotification", info: ["Row": cellToDelete, "Col": cellToDelete, "Num": 0]);
         }
+    }
+    
+    func changeCellState(row: Int, col: Int) {
+        cellArray[row][col].changeState()
     }
     
     func setTileAt(tile: Tile, row: Int, col: Int) {
