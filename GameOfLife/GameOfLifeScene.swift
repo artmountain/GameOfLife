@@ -16,7 +16,7 @@ let visibleTileColor = SKColor(red: 204/255.0, green: 77/255.0, blue: 97/255.0, 
 let tileNumberColor = SKColor(red: 245/255.0, green: 203/255.0, blue: 198/255.0, alpha: 1.0)
 let labelColor = SKColor(red: 231/255.0, green: 220/255.0, blue: 227/255.0, alpha: 1.0)
 
-let cellGraphic: String = "😀"
+let cellGraphic: String = "/Users/user/Documents/AppAttack/GameOfLife/GameOfLife/Images.xcassets/Spaceship.imageset/Spaceship.png"
 
 let fontName = "AvenirNext-Bold"
 let tileLabelFontSize: CGFloat = 36.0
@@ -182,6 +182,13 @@ class GameOfLifeScene: SKScene {
     }
     
     func tileLabelNode(text: String) -> SKNode {
+        //let sprite = SKSpriteNode(imageNamed:"Spaceship")
+        let sprite = SKSpriteNode(imageNamed:"cuteElephant.jpg")
+        sprite.xScale = 0.05
+        sprite.yScale = 0.05
+        
+        return sprite
+/*
         var labelNode = SKLabelNode()
         labelNode.fontColor = tileNumberColor
         labelNode.fontName = fontName
@@ -189,7 +196,8 @@ class GameOfLifeScene: SKScene {
         labelNode.text = "\(text)"
         labelNode.verticalAlignmentMode = .Center
         return labelNode
-    }
+*/
+}
     
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */

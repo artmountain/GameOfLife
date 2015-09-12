@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEC4B8031BA41F3E00976911 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = CEC4B8021BA41F3E00976911 /* AppIcon.appiconset */; };
+		CEC4B8071BA420E900976911 /* cuteElephant.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEC4B8061BA420E900976911 /* cuteElephant.jpg */; };
 		CED6804D1B9CA843008CE309 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6804C1B9CA843008CE309 /* AppDelegate.swift */; };
 		CED6804F1B9CA843008CE309 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED6804E1B9CA843008CE309 /* GameScene.sks */; };
 		CED680511B9CA843008CE309 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED680501B9CA843008CE309 /* GameScene.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CEC4B8021BA41F3E00976911 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppIcon.appiconset; path = GameOfLife/Images.xcassets/AppIcon.appiconset; sourceTree = SOURCE_ROOT; };
+		CEC4B8061BA420E900976911 /* cuteElephant.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cuteElephant.jpg; path = ../../../../Downloads/cuteElephant.jpg; sourceTree = "<group>"; };
 		CED680471B9CA843008CE309 /* GameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED6804B1B9CA843008CE309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED6804C1B9CA843008CE309 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 		CED6804A1B9CA843008CE309 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CEC4B8061BA420E900976911 /* cuteElephant.jpg */,
 				CED6804B1B9CA843008CE309 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -120,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				CED680651B9CA843008CE309 /* Info.plist */,
+				CEC4B8021BA41F3E00976911 /* AppIcon.appiconset */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -207,6 +213,7 @@
 				CED6805B1B9CA843008CE309 /* LaunchScreen.xib in Resources */,
 				CED680581B9CA843008CE309 /* Images.xcassets in Resources */,
 				CED6804F1B9CA843008CE309 /* GameScene.sks in Resources */,
+				CEC4B8071BA420E900976911 /* cuteElephant.jpg in Resources */,
 				CED680561B9CA843008CE309 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC4B8031BA41F3E00976911 /* AppIcon.appiconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +435,7 @@
 				CED6806C1B9CA843008CE309 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CED6806D1B9CA843008CE309 /* Build configuration list for PBXNativeTarget "GameOfLifeTests" */ = {
 			isa = XCConfigurationList;
@@ -435,6 +444,7 @@
 				CED6806F1B9CA843008CE309 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
