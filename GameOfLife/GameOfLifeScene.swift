@@ -16,6 +16,8 @@ let visibleTileColor = SKColor(red: 204/255.0, green: 77/255.0, blue: 97/255.0, 
 let tileNumberColor = SKColor(red: 245/255.0, green: 203/255.0, blue: 198/255.0, alpha: 1.0)
 let labelColor = SKColor(red: 231/255.0, green: 220/255.0, blue: 227/255.0, alpha: 1.0)
 
+let cellGraphic: String = "😀"
+
 let fontName = "AvenirNext-Bold"
 let tileLabelFontSize: CGFloat = 36.0
 let tileCountFontSize: CGFloat = 24.0
@@ -149,16 +151,16 @@ class GameOfLifeScene: SKScene {
             }
         }
         
-        tileNodeAt(3, col:4).addChild(tileLabelNode("😀"))
-        tileNodeAt(1, col:5).addChild(tileLabelNode("😀"))
-        tileNodeAt(1, col:6).addChild(tileLabelNode("😀"))
-        tileNodeAt(2, col:6).addChild(tileLabelNode("😀"))
-        tileNodeAt(3, col:5).addChild(tileLabelNode("😀"))
-        tileNodeAt(4, col:4).addChild(tileLabelNode("😀"))
+        tileNodeAt(3, col:4).addChild(tileLabelNode(cellGraphic))
+        tileNodeAt(1, col:5).addChild(tileLabelNode(cellGraphic))
+        tileNodeAt(1, col:6).addChild(tileLabelNode(cellGraphic))
+        tileNodeAt(2, col:6).addChild(tileLabelNode(cellGraphic))
+        tileNodeAt(3, col:5).addChild(tileLabelNode(cellGraphic))
+        tileNodeAt(4, col:4).addChild(tileLabelNode(cellGraphic))
     }
     
     func populateTileAt(row: Int, col: Int) {
-        tileNodeAt(row, col: col).addChild(tileLabelNode("😀"))
+        tileNodeAt(row, col: col).addChild(tileLabelNode(cellGraphic))
     }
     
     func clearTileAt(row: Int, col: Int) {
