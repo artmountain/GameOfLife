@@ -81,14 +81,14 @@ class GameOfLifeScene: SKScene {
         runNode.fontColor = labelColor
         runNode.position = CGPoint(x: labelXPadding, y: labelYPosition+200)
         runNode.horizontalAlignmentMode = .Left
-        runNode.text = "Run"
+        runNode.text = "run"
         
         stopNode = SKLabelNode(fontNamed: fontName)
         stopNode.fontSize = tileCountFontSize
         stopNode.fontColor = labelColor
         stopNode.position = CGPoint(x: labelXPadding, y: labelYPosition+100)
         stopNode.horizontalAlignmentMode = .Left
-        stopNode.text = "Stop"
+        stopNode.text = "stop"
 
       //  let button = GGButton(defaultButtonImage: "button", activeButtonImage: "button_active", buttonAction: goToGameScene)
       //  button.position = CGPointMake(self.frame.width / 2, self.frame.height / 2)
@@ -109,7 +109,6 @@ class GameOfLifeScene: SKScene {
         self.addChild(tileCountNode)
         self.addChild(runNode)
         self.addChild(stopNode)
-      //  self.addChild(button)
         subscribeToNotifications()
         gameModel.startGame()
     }
@@ -136,7 +135,7 @@ class GameOfLifeScene: SKScene {
     
     func drawBoard() {
         faceNode.text = "Number of live cells : 6"
-        xGridSizeNode.text = "Willy"
+        xGridSizeNode.text = "Hello"
         addTilesToBoard()
     }
     
@@ -218,6 +217,7 @@ class GameOfLifeScene: SKScene {
     func runButtonPressed() {
         gameModel.setState(true)
     }
+    
     func stopButtonPressed() {
         gameModel.setState(false)
     }

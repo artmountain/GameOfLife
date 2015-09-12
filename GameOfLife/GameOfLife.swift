@@ -8,9 +8,8 @@
 
 import Foundation
 
-let numberOfRows = 10
-let numberOfCols = 10
-var isRunning = false
+var numberOfRows = 10
+var numberOfCols = 10
 
 enum Tile {
     case Populated
@@ -28,6 +27,8 @@ class GameOfLifeMain {
     var tiles = Array(count: numberOfRows * numberOfCols, repeatedValue: Tile.Free)
     var i = 0
 
+    var isRunning = false
+    
     init() {}
     
     func startGame() {
@@ -45,7 +46,7 @@ class GameOfLifeMain {
     }
     
     @objc func updateDiagonal() {
-        if isRunning {
+        if isRunning == true {
             notifyView("PopulateTileAtNotification", info: ["Row": i, "Col": i, "Num": 0]);
             i = (i + 1) % numberOfRows
             var cellToDelete = (i - 3 + numberOfRows) % numberOfRows
