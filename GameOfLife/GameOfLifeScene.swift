@@ -209,10 +209,11 @@ class GameOfLifeScene: SKScene {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
-        //    var selectedTile:SKSpriteNode? = getTileAtPosition(xPos: Int(touch.locationInNode(self).x), yPos: Int(touch.locationInNode(self).y))
-        //    if let tile = selectedTile {
-                //tile.isAlive = !tile.isAlive
-        //    }
+            if CGRectContainsPoint(boardNode.frame, touch.locationInNode(self)) {                
+                let row: Int = getRowFromY(touch.locationInNode(self).y)
+                let col: Int = getColFromX(touch.locationInNode(self).x)
+                gameModel.changeCellState(row, col: col)
+            }
             
             // Check start and stop
             if CGRectContainsPoint(runNode.frame, touch.locationInNode(self)) {
@@ -223,6 +224,15 @@ class GameOfLifeScene: SKScene {
             }
         }
     }
+    
+    func getColFromX(x: CGFloat) -> Int {
+        return (Int)(x) / tileSpacing
+    }
+   
+    func getRowFromY(y: CGFloat) -> Int {
+        return (Int)(y) / tileSpacing
+    }
+    
     
     func runButtonPressed() {
         gameModel.setState(true)

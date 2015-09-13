@@ -39,6 +39,15 @@ class GameOfLifeMain {
     }
     
     func setupTiles() {
+        cellArray = [[CellData]](count: numberOfRows, repeatedValue: [CellData](count: numberOfCols, repeatedValue: CellData()))
+        //cellArray = Array(count: numberOfRows, repeatedValue: Array(count: numberOfCols, repeatedValue: CellData()))
+      /*
+        for(var row: Int = 0; row < numberOfRows; ++row) {
+            for(var col: Int = 0; col < numberOfCols; ++col){
+                cellArray[row][col] = CellData()
+            }
+        }*/
+        
         notifyView("DrawStartingBoardNotification")
     }
     
@@ -56,7 +65,13 @@ class GameOfLifeMain {
     }
     
     func changeCellState(row: Int, col: Int) {
-        cellArray[row][col].changeState()
+        var thisCell: CellData = cellArray[row][col]
+        thisCell.changeState()
+        if (thisCell.getIsActive()) {
+            notifyView("PopulateTileAtNotification", info: ["Row": row, "Col": col, "Num": 0]);
+        } else {
+            notifyView("ClearTileAtNotification", info: ["Row": row, "Col": col, "Num": 0]);
+        }
     }
     
     func setTileAt(tile: Tile, row: Int, col: Int) {
