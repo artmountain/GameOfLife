@@ -24,7 +24,6 @@ func randomIntUpTo(n: Int) -> Int {
 class GameOfLifeMain {
     var cellArray = [[CellData]]()
     var timer = NSTimer()
-
     var tiles = Array(count: numberOfRows * numberOfCols, repeatedValue: Tile.Free)
     var i = 0
 
@@ -40,14 +39,6 @@ class GameOfLifeMain {
     
     func setupTiles() {
         cellArray = [[CellData]](count: numberOfRows, repeatedValue: [CellData](count: numberOfCols, repeatedValue: CellData()))
-        //cellArray = Array(count: numberOfRows, repeatedValue: Array(count: numberOfCols, repeatedValue: CellData()))
-      /*
-        for(var row: Int = 0; row < numberOfRows; ++row) {
-            for(var col: Int = 0; col < numberOfCols; ++col){
-                cellArray[row][col] = CellData()
-            }
-        }*/
-        
         notifyView("DrawStartingBoardNotification")
     }
     
@@ -61,6 +52,36 @@ class GameOfLifeMain {
             i = (i + 1) % numberOfRows
             var cellToDelete = (i - 3 + numberOfRows) % numberOfRows
             notifyView("ClearTileAtNotification", info: ["Row": cellToDelete, "Col": cellToDelete, "Num": 0]);
+        }
+    }
+    
+    func evolve() {
+        // Loop through all cells counting the number of neighbours
+        for(var row: Int = 0; row < numberOfRows; ++row) {
+            for(var col: Int = 0; col < numberOfCols; ++col) {
+                // Get this cell
+                var thisCell: CellData = cellArray[row][col]
+                
+                // Start the count of live neighbours at zero
+                thisCell.setNeighboursToZero()
+                
+                // Calculate the number of live neighbours for this cell
+                for (var iRow: Int = max(row-1, 0); iRow < min(row+2, numberOfRows) ; ++iRow) {
+                    for (var iCol: Int = max(col-1, 0); iCol < min(col+2, numberOfCols) ; ++iCol) {
+                        var isMiddleCell:Bool = (iRow == row) && (iCol == col)
+                        if (cellArray[iRow][iCol].getIsActive() && !isMiddleCell) {
+                            thisCell.incrementNeighbours()
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Loop through all cells applying the evolution rules and updating the screen
+        for(var row: Int = 0; row < numberOfRows; ++row) {
+            for(var col: Int = 0; col < numberOfCols; ++col) {
+                // TODO: LUCY FIX THIS
+            }
         }
     }
     

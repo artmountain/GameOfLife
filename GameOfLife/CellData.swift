@@ -10,6 +10,7 @@ import Foundation
 
 class CellData {
     var isActive: Bool = false
+    var neighbours: Int = 0
     
     func setState(newIsActive: Bool) {
         isActive = newIsActive
@@ -21,5 +22,17 @@ class CellData {
     
     func getIsActive() -> Bool {
         return isActive
+    }
+    
+    func setNeighboursToZero() {
+        neighbours = 0
+    }
+    
+    func incrementNeighbours() {
+        ++neighbours
+    }
+    
+    func getNeighbours() -> Int {
+        return neighbours
     }
 }
