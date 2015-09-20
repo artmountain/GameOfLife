@@ -9,23 +9,23 @@
 import Foundation
 
 class CellData {
-    var isActive: Bool = false
+    var active: Bool = false
     var neighbours: Int = 0
     
-    func setState(newIsActive: Bool) {
-        isActive = newIsActive
+    func setState(newActive: Bool) {
+        active = newActive
     }
     
     func changeState() {
-        isActive = !isActive
+        active = !active
     }
     
-    func getIsActive() -> Bool {
-        return isActive
+    func isActive() -> Bool {
+        return active
     }
     
     func setNeighboursToZero() {
-        neighbours = 0
+        neighbours == 0
     }
     
     func incrementNeighbours() {

@@ -38,6 +38,7 @@ class GameOfLifeScene: SKScene {
     //var button: GGButton
     var runNode: SKLabelNode
     var stopNode: SKLabelNode
+    var oneStepNode: SKLabelNode
     
     var tileSpacing: Int
     var tileSize: Int
@@ -91,6 +92,13 @@ class GameOfLifeScene: SKScene {
         stopNode.position = CGPoint(x: labelXPadding, y: labelYPosition+100)
         stopNode.horizontalAlignmentMode = .Left
         stopNode.text = "stop"
+        
+        oneStepNode = SKLabelNode(fontNamed: fontName)
+        oneStepNode.fontSize = tileCountFontSize
+        oneStepNode.fontColor = labelColor
+        oneStepNode.position = CGPoint(x: labelXPadding, y: labelYPosition+150)
+        oneStepNode.horizontalAlignmentMode = .Left
+        oneStepNode.text = "move 1 step"
 
       //  let button = GGButton(defaultButtonImage: "button", activeButtonImage: "button_active", buttonAction: goToGameScene)
       //  button.position = CGPointMake(self.frame.width / 2, self.frame.height / 2)
@@ -111,6 +119,7 @@ class GameOfLifeScene: SKScene {
         self.addChild(tileCountNode)
         self.addChild(runNode)
         self.addChild(stopNode)
+        self.addChild(oneStepNode)
         subscribeToNotifications()
         gameModel.startGame()
     }
@@ -150,13 +159,14 @@ class GameOfLifeScene: SKScene {
                 boardNode.addChild(tileNode)
             }
         }
-        
+    /*
         tileNodeAt(3, col:4).addChild(tileLabelNode(cellGraphic))
         tileNodeAt(1, col:5).addChild(tileLabelNode(cellGraphic))
         tileNodeAt(1, col:6).addChild(tileLabelNode(cellGraphic))
         tileNodeAt(2, col:6).addChild(tileLabelNode(cellGraphic))
         tileNodeAt(3, col:5).addChild(tileLabelNode(cellGraphic))
         tileNodeAt(4, col:4).addChild(tileLabelNode(cellGraphic))
+*/
     }
     
     func populateTileAt(row: Int, col: Int) {
@@ -222,6 +232,9 @@ class GameOfLifeScene: SKScene {
             if CGRectContainsPoint(stopNode.frame, touch.locationInNode(self)) {
                 stopButtonPressed()
             }
+            if CGRectContainsPoint(oneStepNode.frame, touch.locationInNode(self)) {
+                oneStepButtonPressed()
+            }
         }
     }
     
@@ -242,8 +255,12 @@ class GameOfLifeScene: SKScene {
         gameModel.setState(false)
     }
     
-    /*
+    func oneStepButtonPressed() {
+       gameModel.evolve()
+    }
     
+    /*
+
     class GGButton: SKNode {
         var defaultButton: SKSpriteNode
         var activeButton: SKSpriteNode

@@ -11,11 +11,6 @@ import Foundation
 var numberOfRows = 10
 var numberOfCols = 10
 
-enum Tile {
-    case Populated
-    case Free
-}
-
 import Foundation
 func randomIntUpTo(n: Int) -> Int {
     return Int(arc4random_uniform(UInt32(n)))
@@ -24,7 +19,6 @@ func randomIntUpTo(n: Int) -> Int {
 class GameOfLifeMain {
     var cellArray = [[CellData]]()
     var timer = NSTimer()
-    var tiles = Array(count: numberOfRows * numberOfCols, repeatedValue: Tile.Free)
     var i = 0
 
     var isRunning = false
@@ -39,7 +33,14 @@ class GameOfLifeMain {
     
     func setupTiles() {
         cellArray = [[CellData]](count: numberOfRows, repeatedValue: [CellData](count: numberOfCols, repeatedValue: CellData()))
+        for(var row: Int = 0; row < numberOfRows; ++row) {
+            for(var col: Int = 0; col < numberOfCols; ++col) {
+                cellArray[row][col] = CellData()
+            }
+        }
         notifyView("DrawStartingBoardNotification")
+        
+        setStartConfiguration()
     }
     
     func setState(newIsRunning: Bool) {
@@ -53,6 +54,14 @@ class GameOfLifeMain {
             var cellToDelete = (i - 3 + numberOfRows) % numberOfRows
             notifyView("ClearTileAtNotification", info: ["Row": cellToDelete, "Col": cellToDelete, "Num": 0]);
         }
+    }
+    
+    func setStartConfiguration() {
+        changeCellState(3, col: 5)
+        changeCellState(4, col: 5)
+        changeCellState(5, col: 5)
+       // changeCellState(3, col: 5)
+        //changeCellState(5, col: 5)
     }
     
     func evolve() {
@@ -69,7 +78,7 @@ class GameOfLifeMain {
                 for (var iRow: Int = max(row-1, 0); iRow < min(row+2, numberOfRows) ; ++iRow) {
                     for (var iCol: Int = max(col-1, 0); iCol < min(col+2, numberOfCols) ; ++iCol) {
                         var isMiddleCell:Bool = (iRow == row) && (iCol == col)
-                        if (cellArray[iRow][iCol].getIsActive() && !isMiddleCell) {
+                        if (cellArray[iRow][iCol].isActive() && !isMiddleCell) {
                             thisCell.incrementNeighbours()
                         }
                     }
@@ -80,7 +89,29 @@ class GameOfLifeMain {
         // Loop through all cells applying the evolution rules and updating the screen
         for(var row: Int = 0; row < numberOfRows; ++row) {
             for(var col: Int = 0; col < numberOfCols; ++col) {
-                // TODO: LUCY FIX THIS
+                var thisCell: CellData = cellArray[row][col]
+                var neighbours: Int = thisCell.getNeighbours()
+                
+                // See if cell becomes alive
+                if ((neighbours == 3) && (thisCell.isActive() == false)) {
+                    changeCellState(row, col: col)
+                }
+                
+                // See if cell dies
+                //if ((4 > neighbours) && (neighbours > 1)
+                if (!((neighbours == 2) || (neighbours == 3)) && (thisCell.isActive() == true)) {
+                    changeCellState(row, col: col)// (false)
+                }
+                
+                // Lucy - what are the rules?
+                // They depend on
+                // 1. The number of neighbours
+                // 2 Whether the cell is currently active
+                //
+                // You need to use boolean AND (&&)
+                
+                //if (neighbours = 1 < && > 4) && (true) {
+                
             }
         }
     }
@@ -88,35 +119,11 @@ class GameOfLifeMain {
     func changeCellState(row: Int, col: Int) {
         var thisCell: CellData = cellArray[row][col]
         thisCell.changeState()
-        if (thisCell.getIsActive()) {
+        if (thisCell.isActive()) {
             notifyView("PopulateTileAtNotification", info: ["Row": row, "Col": col, "Num": 0]);
         } else {
             notifyView("ClearTileAtNotification", info: ["Row": row, "Col": col, "Num": 0]);
         }
-    }
-    
-    func setTileAt(tile: Tile, row: Int, col: Int) {
-        tiles[(row * numberOfCols) + col] = tile
-    }
-    
-    func tileAt(row: Int, col: Int) -> Tile {
-        return tiles[(row * numberOfCols) + col]
-    }
-    
-    func performFuncOnCellsAdjacentTo(gridFunc: (Int, Int) -> (), row: Int, col: Int) {
-        func boundedGridFunc(r: Int, c: Int) {
-            if r >= 0 && r < numberOfRows && c >= 0 && c < numberOfCols {
-                return gridFunc(r, c)
-            }
-        }
-        boundedGridFunc(row - 1, col - 1)
-        boundedGridFunc(row - 1, col)
-        boundedGridFunc(row - 1, col + 1)
-        boundedGridFunc(row, col - 1)
-        boundedGridFunc(row, col + 1)
-        boundedGridFunc(row + 1, col - 1)
-        boundedGridFunc(row + 1, col)
-        boundedGridFunc(row + 1, col + 1)
     }
     
     func notifyView(name: String, info: Dictionary<String, Int>? = nil) {
@@ -126,5 +133,4 @@ class GameOfLifeMain {
             NSNotificationCenter.defaultCenter().postNotificationName(name, object: nil)
         }
     }
-    
 }
