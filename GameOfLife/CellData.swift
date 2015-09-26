@@ -1,4 +1,4 @@
-//
+ //
 //  CellData.swift
 //  GameOfLife
 //
@@ -25,7 +25,7 @@ class CellData {
     }
     
     func setNeighboursToZero() {
-        neighbours == 0
+        neighbours = 0
     }
     
     func incrementNeighbours() {
