@@ -48,11 +48,16 @@ class GameOfLifeMain {
     }
     
     @objc func updateDiagonal() {
-        if isRunning == true {
+        
+        
+        if isRunning {
+            evolve()
+            /*
             notifyView("PopulateTileAtNotification", info: ["Row": i, "Col": i, "Num": 0]);
             i = (i + 1) % numberOfRows
             var cellToDelete = (i - 3 + numberOfRows) % numberOfRows
             notifyView("ClearTileAtNotification", info: ["Row": cellToDelete, "Col": cellToDelete, "Num": 0]);
+*/
         }
     }
     
