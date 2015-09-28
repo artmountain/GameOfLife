@@ -37,7 +37,7 @@ class GameOfLifeScene: SKScene {
     var xGridSizeNode: SKLabelNode
     //var button: GGButton
     var runNode: SKLabelNode
-    var stopNode: SKLabelNode
+    var stopNode: SKShapeNode!
     var oneStepNode: SKLabelNode
     
     var tileSpacing: Int
@@ -86,12 +86,18 @@ class GameOfLifeScene: SKScene {
         runNode.horizontalAlignmentMode = .Left
         runNode.text = "run"
         
-        stopNode = SKLabelNode(fontNamed: fontName)
-        stopNode.fontSize = tileCountFontSize
-        stopNode.fontColor = labelColor
-        stopNode.position = CGPoint(x: labelXPadding, y: labelYPosition+100)
-        stopNode.horizontalAlignmentMode = .Left
-        stopNode.text = "stop"
+        var stopNodeBox: CGRect = CGRectMake(0, 0, 100, 30)
+        stopNode = SKShapeNode(rect: stopNodeBox, cornerRadius: 10)
+        stopNode.position = CGPoint(x: labelXPadding  , y: labelYPosition + 100)
+        stopNode.fillColor = SKColor(red: 21/255.0, green: 66/255.0, blue: 109/255.0, alpha: 1.0)
+        let stopNodeLabel = SKLabelNode(fontNamed: fontName)
+        stopNodeLabel.position = CGPoint(x: stopNodeBox.midX, y: stopNodeBox.midY)
+        stopNodeLabel.fontSize = tileCountFontSize
+        stopNodeLabel.fontColor = labelColor
+        stopNodeLabel.horizontalAlignmentMode = .Center
+        stopNodeLabel.verticalAlignmentMode = .Center
+        stopNodeLabel.text = "stop"
+        stopNode.addChild(stopNodeLabel)
         
         oneStepNode = SKLabelNode(fontNamed: fontName)
         oneStepNode.fontSize = tileCountFontSize
@@ -159,14 +165,6 @@ class GameOfLifeScene: SKScene {
                 boardNode.addChild(tileNode)
             }
         }
-    /*
-        tileNodeAt(3, col:4).addChild(tileLabelNode(cellGraphic))
-        tileNodeAt(1, col:5).addChild(tileLabelNode(cellGraphic))
-        tileNodeAt(1, col:6).addChild(tileLabelNode(cellGraphic))
-        tileNodeAt(2, col:6).addChild(tileLabelNode(cellGraphic))
-        tileNodeAt(3, col:5).addChild(tileLabelNode(cellGraphic))
-        tileNodeAt(4, col:4).addChild(tileLabelNode(cellGraphic))
-*/
     }
     
     func populateTileAt(row: Int, col: Int) {
