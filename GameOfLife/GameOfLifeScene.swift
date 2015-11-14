@@ -36,9 +36,9 @@ class GameOfLifeScene: SKScene {
     var tileCountNode: SKLabelNode
     var xGridSizeNode: SKLabelNode
     //var button: GGButton
-    var runNode: SKLabelNode
+    var runNode: SKShapeNode!
     var stopNode: SKShapeNode!
-    var oneStepNode: SKLabelNode
+    var oneStepNode: SKShapeNode!
     
     var tileSpacing: Int
     var tileSize: Int
@@ -79,12 +79,18 @@ class GameOfLifeScene: SKScene {
         tileCountNode.position = CGPoint(x: labelYPadding, y: labelYPosition)
         tileCountNode.horizontalAlignmentMode = .Left
         
-        runNode = SKLabelNode(fontNamed: fontName)
-        runNode.fontSize = tileCountFontSize
-        runNode.fontColor = labelColor
-        runNode.position = CGPoint(x: labelXPadding, y: labelYPosition+200)
-        runNode.horizontalAlignmentMode = .Left
-        runNode.text = "run"
+        var runNodeBox: CGRect = CGRectMake(0, 0, 100, 30)
+        runNode = SKShapeNode(rect: runNodeBox, cornerRadius: 10)
+        runNode.position = CGPoint(x: labelXPadding  , y: labelYPosition + 200)
+        runNode.fillColor = SKColor(red: 21/255.0, green: 66/255.0, blue: 109/255.0, alpha: 1.0)
+        let runNodeLabel = SKLabelNode(fontNamed: fontName)
+        runNodeLabel.position = CGPoint(x: runNodeBox.midX, y: runNodeBox.midY)
+        runNodeLabel.fontSize = tileCountFontSize
+        runNodeLabel.fontColor = labelColor
+        runNodeLabel.horizontalAlignmentMode = .Center
+        runNodeLabel.verticalAlignmentMode = .Center
+        runNodeLabel.text = "run"
+        runNode.addChild(runNodeLabel)
         
         var stopNodeBox: CGRect = CGRectMake(0, 0, 100, 30)
         stopNode = SKShapeNode(rect: stopNodeBox, cornerRadius: 10)
@@ -99,12 +105,18 @@ class GameOfLifeScene: SKScene {
         stopNodeLabel.text = "stop"
         stopNode.addChild(stopNodeLabel)
         
-        oneStepNode = SKLabelNode(fontNamed: fontName)
-        oneStepNode.fontSize = tileCountFontSize
-        oneStepNode.fontColor = labelColor
-        oneStepNode.position = CGPoint(x: labelXPadding, y: labelYPosition+150)
-        oneStepNode.horizontalAlignmentMode = .Left
-        oneStepNode.text = "move 1 step"
+        var moveOneStepNodeBox: CGRect = CGRectMake(0, 0, 180, 30)
+        oneStepNode = SKShapeNode(rect: moveOneStepNodeBox, cornerRadius: 10)
+        oneStepNode.position = CGPoint(x: labelXPadding  , y: labelYPosition + 150)
+        oneStepNode.fillColor = SKColor(red: 21/255.0, green: 66/255.0, blue: 109/255.0, alpha: 1.0)
+        let oneStepNodeLabel = SKLabelNode(fontNamed: fontName)
+        oneStepNodeLabel.position = CGPoint(x: moveOneStepNodeBox.midX, y: moveOneStepNodeBox.midY)
+        oneStepNodeLabel.fontSize = tileCountFontSize
+        oneStepNodeLabel.fontColor = labelColor
+        oneStepNodeLabel.horizontalAlignmentMode = .Center
+        oneStepNodeLabel.verticalAlignmentMode = .Center
+        oneStepNodeLabel.text = "move 1 step"
+        oneStepNode.addChild(oneStepNodeLabel)
 
       //  let button = GGButton(defaultButtonImage: "button", activeButtonImage: "button_active", buttonAction: goToGameScene)
       //  button.position = CGPointMake(self.frame.width / 2, self.frame.height / 2)
