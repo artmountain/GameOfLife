@@ -15,6 +15,7 @@ let visibleEdgeColor = SKColor(red: 177/255.0, green: 66/255.0, blue: 97/255.0, 
 let visibleTileColor = SKColor(red: 204/255.0, green: 77/255.0, blue: 97/255.0, alpha: 1.0)
 let tileNumberColor = SKColor(red: 245/255.0, green: 203/255.0, blue: 198/255.0, alpha: 1.0)
 let labelColor = SKColor(red: 231/255.0, green: 220/255.0, blue: 227/255.0, alpha: 1.0)
+let buttonColour = SKColor(red: 21/255.0, green: 66/255.0, blue: 109/255.0, alpha: 1.0)
 
 let cellGraphic: String = "/Users/user/Documents/AppAttack/GameOfLife/GameOfLife/Images.xcassets/Spaceship.imageset/Spaceship.png"
 
@@ -22,7 +23,8 @@ let fontName = "AvenirNext-Bold"
 let tileLabelFontSize: CGFloat = 36.0
 let tileCountFontSize: CGFloat = 24.0
 let bombCountFontSize: CGFloat = 24.0
-let faceFontSize: CGFloat = 20.0
+let labelFontSize: CGFloat = 20.0
+let titleFontSize: CGFloat = 30.0
 let labelXPadding: CGFloat = 10.0
 let labelYPadding: CGFloat = 14.0
 
@@ -48,7 +50,7 @@ class GameOfLifeScene: SKScene {
     override init(size: CGSize)  {
         func tileSizing(screenSize: CGSize) -> (Int, Int) {
             let tileXSpacing = screenSize.width / CGFloat(numberOfCols)
-            let tileYSpacing = (screenSize.height - faceFontSize - labelYPadding) / CGFloat(numberOfRows)
+            let tileYSpacing = (screenSize.height - labelFontSize - labelYPadding) / CGFloat(numberOfRows)
             let tileSpacing = Int(tileXSpacing < tileYSpacing ? tileXSpacing : tileYSpacing)
             let tileSize = tileSpacing - 2
             return (tileSize, tileSpacing)
@@ -70,7 +72,7 @@ class GameOfLifeScene: SKScene {
         xGridSizeNode.horizontalAlignmentMode = .Right
         
         faceNode = SKLabelNode(fontNamed: fontName)
-        faceNode.fontSize = faceFontSize
+        faceNode.fontSize = labelFontSize
         faceNode.position = CGPoint(x: size.width / 2, y: labelYPosition)
         
         tileCountNode = SKLabelNode(fontNamed: fontName)
@@ -82,7 +84,7 @@ class GameOfLifeScene: SKScene {
         var runNodeBox: CGRect = CGRectMake(0, 0, 100, 30)
         runNode = SKShapeNode(rect: runNodeBox, cornerRadius: 10)
         runNode.position = CGPoint(x: labelXPadding  , y: labelYPosition + 200)
-        runNode.fillColor = SKColor(red: 21/255.0, green: 66/255.0, blue: 109/255.0, alpha: 1.0)
+        runNode.fillColor = buttonColour
         let runNodeLabel = SKLabelNode(fontNamed: fontName)
         runNodeLabel.position = CGPoint(x: runNodeBox.midX, y: runNodeBox.midY)
         runNodeLabel.fontSize = tileCountFontSize
@@ -95,7 +97,7 @@ class GameOfLifeScene: SKScene {
         var stopNodeBox: CGRect = CGRectMake(0, 0, 100, 30)
         stopNode = SKShapeNode(rect: stopNodeBox, cornerRadius: 10)
         stopNode.position = CGPoint(x: labelXPadding  , y: labelYPosition + 100)
-        stopNode.fillColor = SKColor(red: 21/255.0, green: 66/255.0, blue: 109/255.0, alpha: 1.0)
+        stopNode.fillColor = buttonColour
         let stopNodeLabel = SKLabelNode(fontNamed: fontName)
         stopNodeLabel.position = CGPoint(x: stopNodeBox.midX, y: stopNodeBox.midY)
         stopNodeLabel.fontSize = tileCountFontSize
@@ -108,7 +110,7 @@ class GameOfLifeScene: SKScene {
         var moveOneStepNodeBox: CGRect = CGRectMake(0, 0, 180, 30)
         oneStepNode = SKShapeNode(rect: moveOneStepNodeBox, cornerRadius: 10)
         oneStepNode.position = CGPoint(x: labelXPadding  , y: labelYPosition + 150)
-        oneStepNode.fillColor = SKColor(red: 21/255.0, green: 66/255.0, blue: 109/255.0, alpha: 1.0)
+        oneStepNode.fillColor = buttonColour
         let oneStepNodeLabel = SKLabelNode(fontNamed: fontName)
         oneStepNodeLabel.position = CGPoint(x: moveOneStepNodeBox.midX, y: moveOneStepNodeBox.midY)
         oneStepNodeLabel.fontSize = tileCountFontSize
@@ -117,7 +119,15 @@ class GameOfLifeScene: SKScene {
         oneStepNodeLabel.verticalAlignmentMode = .Center
         oneStepNodeLabel.text = "move 1 step"
         oneStepNode.addChild(oneStepNodeLabel)
-
+/*
+        func tileLabelNode(text: String) -> SKNode {
+            let sprite = SKSpriteNode(imageNamed:"cuteElephant.jpg")
+            sprite.xScale = 0.05
+            sprite.yScale = 0.05
+            
+            return sprite
+        }
+        */
       //  let button = GGButton(defaultButtonImage: "button", activeButtonImage: "button_active", buttonAction: goToGameScene)
       //  button.position = CGPointMake(self.frame.width / 2, self.frame.height / 2)
      //   addChild(button)
