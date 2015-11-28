@@ -81,44 +81,15 @@ class GameOfLifeScene: SKScene {
         tileCountNode.position = CGPoint(x: labelYPadding, y: labelYPosition)
         tileCountNode.horizontalAlignmentMode = .Left
         
-        var runNodeBox: CGRect = CGRectMake(0, 0, 100, 30)
-        runNode = SKShapeNode(rect: runNodeBox, cornerRadius: 10)
-        runNode.position = CGPoint(x: labelXPadding  , y: labelYPosition + 200)
-        runNode.fillColor = buttonColour
-        let runNodeLabel = SKLabelNode(fontNamed: fontName)
-        runNodeLabel.position = CGPoint(x: runNodeBox.midX, y: runNodeBox.midY)
-        runNodeLabel.fontSize = tileCountFontSize
-        runNodeLabel.fontColor = labelColor
-        runNodeLabel.horizontalAlignmentMode = .Center
-        runNodeLabel.verticalAlignmentMode = .Center
-        runNodeLabel.text = "run"
-        runNode.addChild(runNodeLabel)
+        super.init(size: size)
+        self.backgroundColor = backColor
         
-        var stopNodeBox: CGRect = CGRectMake(0, 0, 100, 30)
-        stopNode = SKShapeNode(rect: stopNodeBox, cornerRadius: 10)
-        stopNode.position = CGPoint(x: labelXPadding  , y: labelYPosition + 100)
-        stopNode.fillColor = buttonColour
-        let stopNodeLabel = SKLabelNode(fontNamed: fontName)
-        stopNodeLabel.position = CGPoint(x: stopNodeBox.midX, y: stopNodeBox.midY)
-        stopNodeLabel.fontSize = tileCountFontSize
-        stopNodeLabel.fontColor = labelColor
-        stopNodeLabel.horizontalAlignmentMode = .Center
-        stopNodeLabel.verticalAlignmentMode = .Center
-        stopNodeLabel.text = "stop"
-        stopNode.addChild(stopNodeLabel)
+        runNode = createButton("run", xPos: labelXPadding, yPos: labelYPosition + 200, width: 100, height: 30)
         
-        var moveOneStepNodeBox: CGRect = CGRectMake(0, 0, 180, 30)
-        oneStepNode = SKShapeNode(rect: moveOneStepNodeBox, cornerRadius: 10)
-        oneStepNode.position = CGPoint(x: labelXPadding  , y: labelYPosition + 150)
-        oneStepNode.fillColor = buttonColour
-        let oneStepNodeLabel = SKLabelNode(fontNamed: fontName)
-        oneStepNodeLabel.position = CGPoint(x: moveOneStepNodeBox.midX, y: moveOneStepNodeBox.midY)
-        oneStepNodeLabel.fontSize = tileCountFontSize
-        oneStepNodeLabel.fontColor = labelColor
-        oneStepNodeLabel.horizontalAlignmentMode = .Center
-        oneStepNodeLabel.verticalAlignmentMode = .Center
-        oneStepNodeLabel.text = "move 1 step"
-        oneStepNode.addChild(oneStepNodeLabel)
+        stopNode = createButton("stop", xPos: labelXPadding, yPos: labelYPosition + 100, width: 100, height: 30)
+        
+        oneStepNode = createButton("move 1 step", xPos: labelXPadding, yPos: labelYPosition + 150, width: 180, height: 30)
+        
 /*
         func tileLabelNode(text: String) -> SKNode {
             let sprite = SKSpriteNode(imageNamed:"cuteElephant.jpg")
@@ -132,8 +103,7 @@ class GameOfLifeScene: SKScene {
       //  button.position = CGPointMake(self.frame.width / 2, self.frame.height / 2)
      //   addChild(button)
         
-        super.init(size: size)
-        self.backgroundColor = backColor
+      
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -277,6 +247,24 @@ class GameOfLifeScene: SKScene {
     
     func oneStepButtonPressed() {
        gameModel.evolve()
+    }
+    
+    
+    // Create button
+    func createButton(label: String, xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat)->SKShapeNode {
+        var nodeBox: CGRect = CGRectMake(0, 0, width, height)
+        let node = SKShapeNode(rect: nodeBox, cornerRadius: 10)
+        node.position = CGPoint(x: xPos, y: yPos)
+        node.fillColor = buttonColour
+        let nodeLabel = SKLabelNode(fontNamed: fontName)
+        nodeLabel.position = CGPoint(x: nodeBox.midX, y: nodeBox.midY)
+        nodeLabel.fontSize = tileCountFontSize
+        nodeLabel.fontColor = labelColor
+        nodeLabel.horizontalAlignmentMode = .Center
+        nodeLabel.verticalAlignmentMode = .Center
+        nodeLabel.text = label
+        node.addChild(nodeLabel)
+        return node
     }
     
     /*

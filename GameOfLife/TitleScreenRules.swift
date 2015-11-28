@@ -18,9 +18,10 @@ class TitleScreenRules: SKScene {
         titleNode.text = "Game of life rules"
         self.addChild(titleNode)
         
-        let sprite = SKSpriteNode(imageNamed:"cuteElephant.jpg")
+        let sprite = SKSpriteNode(imageNamed:"rules")
         sprite.xScale = 0.05
         sprite.yScale = 0.05
+        sprite.position = CGPoint(x: size.width / 2, y: size.height - 100)
         self.addChild(sprite)
         
         self.backgroundColor = SKColor.redColor() //SKColor(red: 231/255.0, green: 220/255.0, blue: 227/255.0, alpha: 1.0)
