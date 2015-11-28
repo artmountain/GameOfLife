@@ -8,7 +8,9 @@
 import SpriteKit
 import Foundation
 
-class TitleScreenRules: SKScene {
+class TitleScreenRules: BaseScene {
+    var startGameNode: SKShapeNode!
+    
     override init(size: CGSize)  {
         super.init(size: size)
         
@@ -24,6 +26,9 @@ class TitleScreenRules: SKScene {
         sprite.position = CGPoint(x: size.width / 2, y: size.height - 270)
         self.addChild(sprite)
         
+        startGameNode = createButton("Start game", xPos: self.size.width/2, yPos: self.size.height/2 - 150, width: 180, height: 30)
+        self.addChild(startGameNode)
+        
         self.backgroundColor = SKColor.redColor() //SKColor(red: 231/255.0, green: 220/255.0, blue: 227/255.0, alpha: 1.0)
     }
     
@@ -33,12 +38,17 @@ class TitleScreenRules: SKScene {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
-            // Transition to Game of Life
-            var gameScene = GameOfLifeScene(size: self.size)
-            var transition = SKTransition.flipVerticalWithDuration(3.0)
-            gameScene.scaleMode = SKSceneScaleMode.AspectFill
-            self.scene!.view?.presentScene(gameScene, transition: transition)
+            if CGRectContainsPoint(startGameNode.frame, touch.locationInNode(self)) {
+                // Transition to Game of Life
+                var gameScene = GameOfLifeScene(size: self.size)
+                var transition = SKTransition.flipVerticalWithDuration(3.0)
+                gameScene.scaleMode = SKSceneScaleMode.AspectFill
+                self.scene!.view?.presentScene(gameScene, transition: transition)
+            
+            }
+            
+            
         }
     }
-
+    
 }

@@ -28,7 +28,7 @@ let titleFontSize: CGFloat = 30.0
 let labelXPadding: CGFloat = 10.0
 let labelYPadding: CGFloat = 14.0
 
-class GameOfLifeScene: SKScene {
+class GameOfLifeScene: BaseScene {
     
     var gameModel = GameOfLifeMain()
     
@@ -247,24 +247,6 @@ class GameOfLifeScene: SKScene {
     
     func oneStepButtonPressed() {
        gameModel.evolve()
-    }
-    
-    
-    // Create button
-    func createButton(label: String, xPos: CGFloat, yPos: CGFloat, width: CGFloat, height: CGFloat)->SKShapeNode {
-        var nodeBox: CGRect = CGRectMake(0, 0, width, height)
-        let node = SKShapeNode(rect: nodeBox, cornerRadius: 10)
-        node.position = CGPoint(x: xPos, y: yPos)
-        node.fillColor = buttonColour
-        let nodeLabel = SKLabelNode(fontNamed: fontName)
-        nodeLabel.position = CGPoint(x: nodeBox.midX, y: nodeBox.midY)
-        nodeLabel.fontSize = tileCountFontSize
-        nodeLabel.fontColor = labelColor
-        nodeLabel.horizontalAlignmentMode = .Center
-        nodeLabel.verticalAlignmentMode = .Center
-        nodeLabel.text = label
-        node.addChild(nodeLabel)
-        return node
     }
     
     /*

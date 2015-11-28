@@ -11,6 +11,7 @@
 		CEC4B8031BA41F3E00976911 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = CEC4B8021BA41F3E00976911 /* AppIcon.appiconset */; };
 		CEC4B8071BA420E900976911 /* cuteElephant.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEC4B8061BA420E900976911 /* cuteElephant.jpg */; };
 		CEC4B8091BA4A70800976911 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC4B8081BA4A70800976911 /* CellData.swift */; };
+		CED4BFBC1C0A082300DE5021 /* BaseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4BFBB1C0A082300DE5021 /* BaseScene.swift */; };
 		CED6804D1B9CA843008CE309 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED6804C1B9CA843008CE309 /* AppDelegate.swift */; };
 		CED6804F1B9CA843008CE309 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED6804E1B9CA843008CE309 /* GameScene.sks */; };
 		CED680511B9CA843008CE309 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED680501B9CA843008CE309 /* GameScene.swift */; };
@@ -38,6 +39,7 @@
 		CEC4B8021BA41F3E00976911 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppIcon.appiconset; path = GameOfLife/Images.xcassets/AppIcon.appiconset; sourceTree = SOURCE_ROOT; };
 		CEC4B8061BA420E900976911 /* cuteElephant.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = cuteElephant.jpg; path = ../../../../Downloads/cuteElephant.jpg; sourceTree = "<group>"; };
 		CEC4B8081BA4A70800976911 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
+		CED4BFBB1C0A082300DE5021 /* BaseScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScene.swift; sourceTree = "<group>"; };
 		CED680471B9CA843008CE309 /* GameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED6804B1B9CA843008CE309 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CED6804C1B9CA843008CE309 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				CEC4B8081BA4A70800976911 /* CellData.swift */,
 				CED680721B9CA89F008CE309 /* GameOfLifeScene.swift */,
 				CE487AA51BF762D9006D720F /* TitleScreenRules.swift */,
+				CED4BFBB1C0A082300DE5021 /* BaseScene.swift */,
 			);
 			path = GameOfLife;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				CED680511B9CA843008CE309 /* GameScene.swift in Sources */,
 				CED680531B9CA843008CE309 /* GameViewController.swift in Sources */,
 				CED680731B9CA89F008CE309 /* GameOfLifeScene.swift in Sources */,
+				CED4BFBC1C0A082300DE5021 /* BaseScene.swift in Sources */,
 				CE487AA61BF762D9006D720F /* TitleScreenRules.swift in Sources */,
 				CED680711B9CA85D008CE309 /* GameOfLife.swift in Sources */,
 				CED6804D1B9CA843008CE309 /* AppDelegate.swift in Sources */,
